@@ -1,0 +1,1 @@
+SELECT p.name FROM person AS p JOIN person_order
