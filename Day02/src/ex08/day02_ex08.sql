@@ -1,9 +1,3 @@
-SELECT * FROM person AS p
-WHERE (p.address = 'Moscow' OR p.address = 'Samara') AND p.gender = 'male'
-
-SELECT * FROM menu AS m
-JOIN
-person_order AS po ON m.id = po.menu_id
 
 WITH tmp AS (
     SELECT * FROM menu AS m
