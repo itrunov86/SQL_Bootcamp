@@ -1,5 +1,3 @@
-
-
 services:
   postgres:
     image: postgres:16.2-alpine3.18
@@ -9,12 +7,12 @@ services:
       POSTGRES_PASSWORD: "pass"
       PGDATA: "/var/lib/postgresql/data/pgdata"
     volumes:
-      - ./materials:/docker-entrypoint-initdb.d
-      - /home/matildet/Desktop/projects/SQL:/var/lib/postgresql/data/
+      - ./model_db/:/docker-entrypoint-initdb.d
+      - /home/matildet/Desktop/project/SQL:/var/lib/postgresql/data/
     ports:
       - "5432:5432"
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U matildet -d SQL_intensiv"]
+      test: [ "CMD-SHELL", "pg_isready -U matildet -d SQL_intensiv" ]
       interval: 10s
       timeout: 5s
       retries: 5
