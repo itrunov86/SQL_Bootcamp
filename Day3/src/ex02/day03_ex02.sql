@@ -1,12 +1,8 @@
-SELECT m.pizza_name, m.price, pz.name AS pizzeria_name
-FROM
-    menu AS m
-    JOIN pizzeria AS pz ON m.pizzeria_id = pz.id
-    JOIN person_visits AS pv ON pv.pizzeria_id = pz.id
-    JOIN person AS p ON p.id = pv.person_id
-WHERE
-    p.name = 'Kate'
-    AND (
-        price BETWEEN '800' AND '1000'
-    )
-ORDER BY 1, 2, 3
+
+SELECT m1.pizza_name, m1.price, pz.name AS pizzeria_name FROM (
+SELECT m.id FROM menu AS m
+EXCEPT
+SELECT po.menu_id FROM person_order AS po) AS tmp
+JOIN menu AS m1 ON tmp.id = m1.id
+JOIN pizzeria AS pz ON pz.id = m1.pizzeria_id
+ORDER BY 1, 2
